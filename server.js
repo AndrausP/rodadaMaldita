@@ -181,6 +181,8 @@ async function loadCert() {
     console.log(`  No seu PC:       http://localhost:${PORT}`);
   });
 
+  // no Render o HTTPS já vem pronto na frente do app
+  if (process.env.RENDER) return;
   const cert = await loadCert();
   if (cert) {
     const httpsServer = https.createServer(cert, handler);
