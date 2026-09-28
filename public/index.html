@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>html{-webkit-text-size-adjust:100%}</style>
+
+</head>
+<body>
+<title>Rodada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Grenze+Gotisch:wght@900&family=Figtree:wght@400;600;700;800;900&display=swap">
+<style>
+:root{color-scheme:dark;--bg:#0C0B12;--s1:#14131C;--s2:#1B1A26;--line:rgba(255,255,255,.08);--text:#F1EEF8;--muted:#9C98B0;
+  --display:"Bagel Fat One","Arial Rounded MT Bold","Trebuchet MS",system-ui,sans-serif;--body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(900px 480px at 15% -10%,rgba(169,155,255,.16),transparent 70%),radial-gradient(900px 520px at 100% 110%,rgba(200,16,46,.16),transparent 70%)}
+main{max-width:1040px;margin:0 auto;padding-inline:20px;padding-block:56px 40px;display:flex;flex-direction:column;gap:30px}
+.logo{font-family:var(--display);font-size:40px;display:inline-flex;gap:2px;line-height:1}
+.logo span{display:inline-block;transform:rotate(var(--r))}
+.logo span:nth-child(1){color:#FF5A6E;--r:-6deg}.logo span:nth-child(2){color:#FFC23C;--r:4deg}.logo span:nth-child(3){color:#3DD6B5;--r:-3deg}
+.logo span:nth-child(4){color:#A99BFF;--r:5deg}.logo span:nth-child(5){color:#FF5A6E;--r:-4deg}.logo span:nth-child(6){color:#FFC23C;--r:3deg}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,6vw,56px);line-height:1.02;margin:0;letter-spacing:.005em}
+.lead{margin:0;color:var(--muted);font-size:17px;max-width:56ch;line-height:1.55}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+a.game{position:relative;display:flex;flex-direction:column;gap:10px;min-height:230px;text-decoration:none;color:var(--text);border-radius:22px;padding:22px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01)),var(--s1);border:1px solid var(--line);box-shadow:0 20px 50px -30px rgba(0,0,0,.9);transition:transform .15s,border-color .15s}
+a.game::before{content:"";position:absolute;inset:0;background:radial-gradient(420px 220px at 100% 0%,var(--glow),transparent 70%);opacity:.55;pointer-events:none}
+a.game:hover{transform:translateY(-3px);border-color:var(--c)}
+a.game:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+a.game > *{position:relative}
+a.game small{font-weight:800;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+a.game b{font-family:var(--display);font-weight:400;font-size:30px;line-height:1.02}
+a.game span{color:var(--muted);font-size:14.5px;line-height:1.5}
+a.game em{margin-top:auto;font-style:normal;font-weight:800;font-size:14px;color:var(--c)}
+a.game.maldita{--c:#E0283F;--glow:rgba(224,40,63,.5);background:linear-gradient(180deg,#1C1215,#110B0D);border-color:rgba(224,40,63,.25)}
+a.game.maldita b{font-family:"Grenze Gotisch",Georgia,serif;font-weight:900;font-size:36px;color:#E9DFCC}
+a.game.festa{--c:#FFC23C;--glow:rgba(255,194,60,.35)}
+a.game.gincana{--c:#FF5A6E;--glow:rgba(255,90,110,.35)}
+a.game.poker{--c:#3DD6B5;--glow:rgba(61,214,181,.35)}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.how div{padding:14px 16px;border-radius:14px;background:var(--s1);border:1px solid var(--line);font-size:14px;color:var(--muted);line-height:1.5}
+.how b{display:block;color:var(--text);font-size:14.5px;margin-bottom:2px}
+footer{color:var(--muted);font-size:13px}
+</style>
+<main>
+  <div class="logo" aria-label="Rodada"><span>R</span><span>O</span><span>D</span><span>A</span><span>D</span><span>A</span></div>
+  <h1>Escolha o jogo da noite.</h1>
+  <p class="lead">Tudo rodando na sua máquina. Os jogos online funcionam pra quem estiver na mesma rede, pelo endereço que o servidor mostrou no terminal.</p>
+  <div class="games">
+    <a class="game maldita" href="maldita.html"><small>Celular, PC ou TV · online na rede</small><b>Rodada Maldita</b><span>26 provações de terror, almas, avatares, mapas ao vivo, prêmios e modo telão.</span><em>Entrar no ritual →</em></a>
+    <a class="game festa" href="rodada.html"><small>Celular · passa de mão em mão</small><b>Jogos de festa</b><span>Impostor, Correria e Cartas na Mesa num aparelho só.</span><em>Jogar →</em></a>
+    <a class="game gincana" href="gincana.html"><small>Celular ou PC · online na rede</small><b>Gincana</b><span>Provas rápidas ao vivo, individual ou em times, com placar.</span><em>Jogar →</em></a>
+    <a class="game poker" href="poker.html"><small>PC · online na rede</small><b>Poker</b><span>Texas Hold'em com mesa por código, chat e bots.</span><em>Sentar à mesa →</em></a>
+  </div>
+  <div class="how">
+    <div><b>1. Abra aqui</b>No PC que roda o servidor, use http://localhost:3000.</div>
+    <div><b>2. Chame a galera</b>Na mesma rede, os amigos abrem o endereço https://SEU-IP:3443 que o terminal mostrou.</div>
+    <div><b>3. Aceite o aviso</b>O navegador avisa sobre o certificado local. Clique em "Avançado" e continue.</div>
+  </div>
+  <footer>Rodada · versão local</footer>
+</main>
+
+</body>
+</html>

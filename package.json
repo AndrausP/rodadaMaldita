@@ -1,0 +1,18 @@
+{
+  "name": "rodada",
+  "version": "1.0.0",
+  "description": "Rodada — jogos de festa e poker online pra rodar na sua máquina",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node build.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "selfsigned": "^5.5.0",
+    "ws": "^8.22.0"
+  }
+}

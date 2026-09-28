@@ -1,0 +1,11 @@
+const { chromium } = require('playwright');
+(async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:400,height:860}});
+const errs=[];p.on('pageerror',e=>errs.push(e.message));
+await p.goto('file:///tmp/claude-0/prev.html');await p.waitForTimeout(800);
+await p.screenshot({path:'/tmp/claude-0/home.png',fullPage:true});
+await p.click('text=Correria');await p.click('text=Começar partida');await p.click('text=Valendo!');await p.waitForTimeout(3600);
+await p.click('text=Acertou!');await p.waitForTimeout(300);await p.screenshot({path:'/tmp/claude-0/cor.png'});
+await p.evaluate(()=>go('home'));await p.click('.game.coral');await p.click('text=Distribuir cartas');
+const c=await p.$('#holdCard');const bb=await c.boundingBox();await p.mouse.move(bb.x+50,bb.y+50);await p.mouse.down();await p.waitForTimeout(200);
+await p.screenshot({path:'/tmp/claude-0/imp.png'});await p.mouse.up();
+console.log('errs',errs);await b.close()})();

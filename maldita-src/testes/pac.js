@@ -1,0 +1,14 @@
+const { chromium } = require('playwright');const fs=require('fs');
+(async()=>{const b=await chromium.launch();const errs=[];const FD='/tmp/claude-0/fonts/';
+let css='';for(const w of [500,700,900])css+=`@font-face{font-family:"Grenze Gotisch";font-weight:${w};src:url(https://fonts.gstatic.com/g/${w}.woff2)}`;for(const w of [400,500,600,700,800,900])css+=`@font-face{font-family:"Figtree";font-weight:${w};src:url(https://fonts.gstatic.com/f/${w}.woff2)}`;
+const c=await b.newContext({viewport:{width:1400,height:900}});
+await c.route('https://fonts.googleapis.com/**',r=>r.fulfill({contentType:'text/css',body:css}));await c.route('https://fonts.gstatic.com/**',r=>{const m=r.request().url().match(/\/(g|f)\/(\d+)/);r.fulfill({contentType:'font/woff2',body:fs.readFileSync(m[1]==='g'?`${FD}fontsource-grenze-gotisch-5.3.0/package/files/grenze-gotisch-latin-${m[2]}-normal.woff2`:`${FD}fontsource-figtree-5.3.0/package/files/figtree-latin-${m[2]}-normal.woff2`)})});
+const p=await c.newPage();p.on('pageerror',e=>errs.push(e.message));
+await p.goto('http://localhost:3000/maldita.html');await p.waitForTimeout(600);await p.click('[data-act=solo]');await p.waitForTimeout(300);
+await p.evaluate(()=>{H.pl.forEach(q=>q.sc=6+Math.floor(Math.random()*8));H.plan=["pacto","pacto"];H.r=0;H.R=2;nextRound();playPhase()});await p.waitForTimeout(800);
+await p.screenshot({path:'/tmp/claude-0/ds/pac_play.png'});
+await p.click('.pact-b[data-v="4"]');await p.waitForTimeout(11000);console.log('ph',await p.evaluate(()=>H.ph));
+await p.screenshot({path:'/tmp/claude-0/ds/pac_rev.png'});
+console.log(await p.evaluate(()=>[...H.pl.values()].map(x=>x.n+":"+x.rv+":"+x.rp+":"+x.sc).join(" | ")));
+console.log(await p.evaluate(()=>{H.cfg.count=12;H.R=12;return JSON.stringify(Array.from({length:30},()=>planRounds().slice(0,2).includes("pacto")).filter(Boolean).length)}));
+console.log('errs',errs);await b.close()})();

@@ -1,0 +1,13 @@
+const { chromium } = require('playwright');const fs=require('fs');
+(async()=>{const b=await chromium.launch();const errs=[];const FD='/tmp/claude-0/fonts/';
+let css='';for(const w of [500,700,900])css+=`@font-face{font-family:"Grenze Gotisch";font-weight:${w};src:url(https://fonts.gstatic.com/g/${w}.woff2)}`;for(const w of [400,500,600,700,800,900])css+=`@font-face{font-family:"Figtree";font-weight:${w};src:url(https://fonts.gstatic.com/f/${w}.woff2)}`;
+const c=await b.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
+await c.route('https://fonts.googleapis.com/**',r=>r.fulfill({contentType:'text/css',body:css}));await c.route('https://fonts.gstatic.com/**',r=>{const m=r.request().url().match(/\/(g|f)\/(\d+)/);r.fulfill({contentType:'font/woff2',body:fs.readFileSync(m[1]==='g'?`${FD}fontsource-grenze-gotisch-5.3.0/package/files/grenze-gotisch-latin-${m[2]}-normal.woff2`:`${FD}fontsource-figtree-5.3.0/package/files/figtree-latin-${m[2]}-normal.woff2`)})});
+const p=await c.newPage();p.on('pageerror',e=>errs.push(e.message));
+await p.goto('http://localhost:3000/maldita.html');await p.evaluate(()=>localStorage.setItem('rodada-maldita:last',JSON.stringify({c:"ABCD",t:Date.now()})));await p.reload();await p.waitForTimeout(900);
+await p.evaluate(()=>document.querySelector('.join-panel').scrollIntoView());await p.waitForTimeout(300);await p.screenshot({path:'/tmp/claude-0/ds/mob_join.png'});
+await p.evaluate(()=>document.querySelector('[data-act=solo]').scrollIntoView());await p.click('[data-act=solo]');await p.waitForTimeout(400);
+await p.evaluate(()=>{H.pl.forEach(q=>q.sc=6+Math.floor(Math.random()*8));H.plan=["pacto","pacto"];H.r=0;H.R=2;nextRound();playPhase()});await p.waitForTimeout(800);await p.screenshot({path:'/tmp/claude-0/ds/mob_pacto.png'});
+await p.evaluate(()=>{H.pl.forEach((q,i)=>{q.h=[{k:"quiz",rp:10-i,rank:i},{k:"coroa",rp:8,rank:0}];q.bst=i+2;q.sc=30-i*4});finalPhase()});await p.waitForTimeout(3500);
+await p.evaluate(()=>document.querySelector('.awards')?.scrollIntoView());await p.waitForTimeout(300);await p.screenshot({path:'/tmp/claude-0/ds/mob_awards.png'});
+console.log('errs',errs);await b.close()})();
