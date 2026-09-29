@@ -1,7 +1,7 @@
 {
-  "name": "rodada",
+  "name": "rodada-cartas",
   "version": "1.0.0",
-  "description": "Rodada — jogos de festa, gincana e Rodada Maldita pra rodar na sua máquina",
+  "description": "Rodada Cartas — poker e truco (paulista e mineiro) online pra rodar na sua máquina",
   "private": true,
   "main": "server.js",
   "scripts": {

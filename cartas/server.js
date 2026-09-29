@@ -1,12 +1,12 @@
-// Rodada — servidor local
+// Rodada Cartas — servidor local
 // Serve os jogos da pasta /public e faz o papel das "salas" online (presença compartilhada)
 // via WebSocket, no mesmo formato que as páginas esperam.
 //
 //   npm install
 //   npm start
 //
-// HTTP  : http://localhost:3000        (use no seu PC)
-// HTTPS : https://SEU-IP:3443          (use pros amigos na mesma rede; aceite o aviso de certificado)
+// HTTP  : http://localhost:3100        (use no seu PC)
+// HTTPS : https://SEU-IP:3543          (use pros amigos na mesma rede; aceite o aviso de certificado)
 
 const http = require("http");
 const https = require("https");
@@ -15,10 +15,9 @@ const path = require("path");
 const os = require("os");
 const { WebSocketServer } = require("ws");
 
-const PORT = +process.env.PORT || 3000;
-const HTTPS_PORT = +process.env.HTTPS_PORT || 3443;
+const PORT = +process.env.PORT || 3100;
+const HTTPS_PORT = +process.env.HTTPS_PORT || 3543;
 const PUBLIC = path.join(__dirname, "public");
-const CARTAS = path.join(__dirname, "cartas", "public");   // truco e poker, servidos em /cartas/
 const CERT_DIR = path.join(__dirname, ".cert");
 const GRACE_MS = 8000;            // tempo pra reconectar sem "sair" da sala
 const MAX_PRESENCE = 4096;        // bytes de presença por pessoa, por sala
@@ -33,14 +32,10 @@ const MIME = {
 /* arquivos estáticos                                                  */
 /* ------------------------------------------------------------------ */
 function handler(req, res) {
-  let url;
-  try { url = decodeURIComponent((req.url || "/").split("?")[0]); } catch { res.writeHead(400).end(); return; }
-  if (url === "/cartas") { res.writeHead(301, { Location: "/cartas/" }).end(); return; }
-  let root = PUBLIC;
-  if (url.startsWith("/cartas/")) { root = CARTAS; url = url.slice("/cartas".length); }
-  if (url.endsWith("/")) url += "index.html";
-  const file = path.normalize(path.join(root, url));
-  if (!file.startsWith(root + path.sep)) { res.writeHead(403).end(); return; }
+  let url = decodeURIComponent((req.url || "/").split("?")[0]);
+  if (url === "/") url = "/index.html";
+  const file = path.normalize(path.join(PUBLIC, url));
+  if (!file.startsWith(PUBLIC)) { res.writeHead(403).end(); return; }
   fs.readFile(file, (err, data) => {
     if (err) { res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" }).end("Não encontrado"); return; }
     res.writeHead(200, { "Content-Type": MIME[path.extname(file)] || "application/octet-stream", "Cache-Control": "no-cache" });
@@ -182,12 +177,10 @@ async function loadCert() {
   const httpServer = http.createServer(handler);
   attachWs(httpServer);
   httpServer.listen(PORT, () => {
-    console.log("\n  RODADA rodando!\n");
+    console.log("\n  RODADA CARTAS rodando!\n");
     console.log(`  No seu PC:       http://localhost:${PORT}`);
   });
 
-  // no Render o HTTPS já vem pronto na frente do app
-  if (process.env.RENDER) return;
   const cert = await loadCert();
   if (cert) {
     const httpsServer = https.createServer(cert, handler);

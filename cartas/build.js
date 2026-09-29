@@ -9,9 +9,8 @@ const RESET = "html{-webkit-text-size-adjust:100%}";
 
 const pages = [
   { src: "index.body.html", out: "index.html" },
-  { src: "rodada.body.html", out: "rodada.html" },
-  { src: "gincana.body.html", out: "gincana.html", head: '<script src="room-shim.js"></script>' },
-  { src: "maldita.body.html", out: "maldita.html", head: '<script src="room-shim.js"></script>' },
+  { src: "poker.body.html", out: "poker.html", head: '<script src="room-shim.js"></script>' },
+  { src: "truco.body.html", out: "truco.html", head: '<script src="room-shim.js"></script>' },
 ];
 
 for (const p of pages) {

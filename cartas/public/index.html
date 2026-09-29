@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>html{-webkit-text-size-adjust:100%}</style>
+
+</head>
+<body>
+<title>Rodada Cartas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Figtree:wght@400;600;700;800;900&display=swap">
+<style>
+:root{color-scheme:dark;--bg:#0E1024;--s1:#161933;--line:rgba(255,255,255,.08);--text:#F2EEFF;--muted:#A7A3D1;
+  --display:"Bagel Fat One","Arial Rounded MT Bold","Trebuchet MS",system-ui,sans-serif;--body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(900px 480px at 10% -10%,rgba(61,214,181,.14),transparent 70%),radial-gradient(900px 520px at 100% 110%,rgba(91,192,255,.16),transparent 70%)}
+main{max-width:980px;margin:0 auto;padding-inline:20px;padding-block:56px 40px;display:flex;flex-direction:column;gap:30px}
+.logo{font-family:var(--display);font-size:40px;display:inline-flex;gap:2px;line-height:1;align-items:flex-end}
+.logo span{display:inline-block;transform:rotate(var(--r))}
+.logo span:nth-child(1){color:#FF5A6E;--r:-6deg}.logo span:nth-child(2){color:#FFC23C;--r:4deg}.logo span:nth-child(3){color:#3DD6B5;--r:-3deg}
+.logo span:nth-child(4){color:#A99BFF;--r:5deg}.logo span:nth-child(5){color:#FF5A6E;--r:-4deg}.logo span:nth-child(6){color:#FFC23C;--r:3deg}
+.logo em{font-style:normal;color:#FFF3E3;font-size:.7em;margin-left:12px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,6vw,56px);line-height:1.02;margin:0}
+.lead{margin:0;color:var(--muted);font-size:17px;max-width:56ch;line-height:1.55}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+a.game{position:relative;display:flex;flex-direction:column;gap:10px;min-height:250px;text-decoration:none;color:var(--text);border-radius:22px;padding:22px;overflow:hidden;
+  background:var(--s1);border:1px solid var(--line);box-shadow:0 20px 50px -30px rgba(0,0,0,.9);transition:transform .15s,border-color .15s}
+a.game::before{content:"";position:absolute;inset:0;background:radial-gradient(420px 220px at 100% 0%,var(--glow),transparent 70%);opacity:.55;pointer-events:none}
+a.game:hover{transform:translateY(-3px);border-color:var(--c)}
+a.game:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+a.game > *{position:relative}
+a.game small{font-weight:800;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+a.game b{font-family:var(--display);font-weight:400;font-size:32px;line-height:1.02}
+a.game span{color:var(--muted);font-size:14.5px;line-height:1.5}
+a.game em{margin-top:auto;font-style:normal;font-weight:800;font-size:14px;color:var(--c)}
+a.game.poker{--c:#3DD6B5;--glow:rgba(61,214,181,.4)}
+a.game.truco{--c:#FFC23C;--glow:rgba(91,192,255,.45)}
+.mini{display:flex;gap:6px}
+.mini i{width:34px;height:48px;border-radius:6px;background:#FFF3E3;border:2px solid #07081A;color:#1A1530;font-style:normal;font-family:var(--display);font-size:15px;display:grid;place-items:center;transform:rotate(var(--r,0deg))}
+.mini i.red{color:#FF5A6E}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.how div{padding:14px 16px;border-radius:14px;background:var(--s1);border:1px solid var(--line);font-size:14px;color:var(--muted);line-height:1.5}
+.how b{display:block;color:var(--text);font-size:14.5px;margin-bottom:2px}
+footer{color:var(--muted);font-size:13px;line-height:1.5}
+footer a{color:var(--text)}
+</style>
+<main>
+  <div class="logo" aria-label="Rodada Cartas"><span>R</span><span>O</span><span>D</span><span>A</span><span>D</span><span>A</span><em>cartas</em></div>
+  <h1>Escolha a mesa.</h1>
+  <p class="lead">Poker e truco com mesa por código, chat e bots pra completar. Tudo rodando na sua máquina, e os amigos entram pela rede.</p>
+  <div class="games">
+    <a class="game truco" href="truco.html"><small>Celular ou PC · online na rede</small>
+      <div class="mini" aria-hidden="true"><i style="--r:-8deg">4♣</i><i class="red" style="--r:-3deg">7♥</i><i style="--r:3deg">A♠</i><i class="red" style="--r:8deg">7♦</i></div>
+      <b>Truco</b><span>Paulista ou mineiro, de 2, 4 ou 6. Truco, seis, nove e doze, mão de onze, mão de ferro e coringa opcional valendo 3,5.</span><em>Pedir truco →</em></a>
+    <a class="game poker" href="poker.html"><small>PC · online na rede</small>
+      <div class="mini" aria-hidden="true"><i style="--r:-6deg">A♠</i><i class="red" style="--r:0deg">K♥</i><i class="red" style="--r:6deg">Q♦</i></div>
+      <b>Poker</b><span>Texas Hold'em No-Limit com até 8 lugares, cartas criptografadas, chat e bots.</span><em>Sentar à mesa →</em></a>
+  </div>
+  <div class="how">
+    <div><b>1. Abra aqui</b>No PC que roda o servidor, use http://localhost:3100.</div>
+    <div><b>2. Chame a galera</b>Na mesma rede, os amigos abrem o endereço https://SEU-IP:3543 que o terminal mostrou.</div>
+    <div><b>3. Aceite o aviso</b>O navegador avisa sobre o certificado local. Clique em "Avançado" e continue.</div>
+  </div>
+  <footer>Rodada Cartas · versão local. Os jogos de festa, a Gincana e a Rodada Maldita ficam no projeto Rodada (<a href="../">voltar ao início</a>).</footer>
+</main>
+
+</body>
+</html>
