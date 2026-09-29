@@ -353,8 +353,9 @@ button.empty-seat small{display:block;font-size:11px;letter-spacing:.1em;text-tr
 /* ============================================================
    CONSTANTES E UTILITÁRIOS
    ============================================================ */
-const ORD="4567QJKA23", ORD_CHEIO="456789TQJKA23", SUITS="oecp", SYM={o:"♦",e:"♠",c:"♥",p:"♣"}, SUITN={o:"ouros",e:"espadas",c:"copas",p:"paus"};
+const ORD="QJK23", ORD_CHEIO="456789TQJKA23", SUITS="oecp", SYM={o:"♦",e:"♠",c:"♥",p:"♣"}, SUITN={o:"ouros",e:"espadas",c:"copas",p:"paus"};
 const RNAME={Q:"Dama",J:"Valete",K:"Rei",A:"Ás",T:"10"};
+// baralho vazio: só família real (Q, J, K), 2 e 3, mais as manilhas (no mineiro entram as 4 fixas)
 // valor base das cartas comuns (8, 9 e 10 do baralho cheio ficam entre o 7 e a dama)
 const RV={"4":0,"5":1,"6":2,"7":3,"8":3.25,"9":3.5,"T":3.75,"Q":4,"J":5,"K":6,"A":7,"2":8,"3":9};
 const ordOf=cheio=>cheio?ORD_CHEIO:ORD;
@@ -486,7 +487,7 @@ function fillBots(){for(let i=0;i<G.cfg.n;i++)if(!G.seats[i])G.seats[i]=mkBot()}
 function setLa(i,t,big){G.la={q:++G.laK,i,n:G.seats[i]?G.seats[i].nick:"",t,b:big?1:0}}
 let nextTimer=null;
 function later(fn,ms){clearTimeout(nextTimer);const g=G;nextTimer=setTimeout(()=>{if(G&&G===g)fn()},ms)}
-function deck(){const d=[];for(const r of ordOf(G.cfg.cheio))for(const s of SUITS)d.push(r+s);if(G.cfg.cor)d.push("X1","X2");return shuffle(d)}
+function deck(){const d=[];for(const r of ordOf(G.cfg.cheio))for(const s of SUITS)d.push(r+s);if(!G.cfg.cheio&&G.cfg.mode==="mineiro")d.push(...Object.keys(MINEIRO_M));if(G.cfg.cor)d.push("X1","X2");return shuffle(d)}
 
 function startHand(){
   clearTimeout(nextTimer);
@@ -969,10 +970,10 @@ function renderLobby(){
         </div>
         <div class="field"><span class="label">Baralho</span>
           <div class="seg">
-            <button data-act="deck" data-v="0" aria-pressed="${!C.cheio}">Vazio · 40 cartas</button>
+            <button data-act="deck" data-v="0" aria-pressed="${!C.cheio}">Vazio · ${C.mode==="mineiro"?24:20} cartas</button>
             <button data-act="deck" data-v="1" aria-pressed="${!!C.cheio}">Cheio · 52 cartas</button>
           </div>
-          <p class="hint">${C.cheio?"Cheio (sujo): com 8, 9 e 10. Eles valem mais que o 7 e menos que a dama.":"Vazio (limpo): sem 8, 9 e 10, o jeito mais comum."}</p></div>
+          <p class="hint">${C.cheio?"Cheio (sujo): com 8, 9 e 10. Eles valem mais que o 7 e menos que a dama.":(C.mode==="mineiro"?"Vazio: só Q, J, K, 2 e 3, mais as 4 manilhas (4♣, 7♥, A♠, 7♦).":"Vazio: só Q, J, K, 2 e 3. A vira define a manilha entre elas (depois do 3 volta pra dama).")}</p></div>
         <button class="toggle" data-act="cor" aria-pressed="${!!C.cor}"><span class="sw"></span><span><b>Coringa (vale 3,5)</b><small>Entram 2 coringas no baralho. Ganham do 3 e perdem das manilhas.</small></span></button>
         <p class="hint">${C.mode==="mineiro"?"Mineiro: manilhas fixas (zap 4♣, copas 7♥, espadilha A♠, pica-fumo 7♦). Mão vale 2, truco 4, depois 6, 10 e 12.":"Paulista: a vira define a manilha (a carta seguinte). Mão vale 1, truco 3, depois 6, 9 e 12."}</p>
 

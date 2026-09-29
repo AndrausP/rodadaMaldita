@@ -5,7 +5,7 @@ Poker e truco online pra rodar na sua máquina, com mesa por código, chat e bot
 - **Truco** (`truco.html`): paulista ou mineiro, de 2, 4 ou 6 jogadores (em duplas ou trios, os times se alternam na mesa). Funciona no celular e no PC.
   - **Paulista**: a vira define a manilha (a carta seguinte), com naipes na ordem paus (zap) › copas › espadas › ouros. A mão vale 1, e o truco sobe para 3, 6, 9 e 12. Mão de onze vale 3.
   - **Mineiro**: manilhas fixas, zap (4♣) › copas (7♥) › espadilha (A♠) › pica-fumo (7♦). A mão vale 2, e o truco sobe para 4, 6, 10 e 12. Mão de dez vale 4.
-  - **Baralho vazio** (40 cartas, sem 8, 9 e 10) ou **cheio** (52 cartas, com 8, 9 e 10 entre o 7 e a dama).
+  - **Baralho vazio** (só família real Q, J, K, mais 2, 3 e as manilhas: 20 cartas no paulista, com a manilha saindo da vira; 24 no mineiro, com as 4 manilhas fixas) ou **cheio** (52 cartas, com 8, 9 e 10 entre o 7 e a dama).
   - **Coringa 3,5** (opcional): entram 2 coringas que ganham do 3 e perdem das manilhas.
   - Mão de onze/dez (quem está nela vê as cartas do parceiro e decide se joga), mão de ferro (os dois times nela: ninguém vê as próprias cartas e não tem truco), carta encoberta a partir da 2ª vaza, empates (cangou/empachou) e partidas até 12 pontos.
   - Atalhos: `1` `2` `3` jogam a carta, `T` pede truco, `E` liga a encoberta, `A` aceita, `M` aumenta, `C` corre, `J` joga a mão de onze.
